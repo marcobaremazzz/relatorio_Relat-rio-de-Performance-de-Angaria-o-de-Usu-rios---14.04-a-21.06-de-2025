@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico de Performance | Placa Viva & Posto 214 Sul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #665191, #d45087);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-2">Relatório de Performance de Angariação</h1>
+            <h2 class="text-2xl font-semibold text-slate-600">Sistema Placa Viva | Posto 214 Sul</h2>
+            <p class="text-slate-500 mt-2">Período de Análise: 14 de Abril a 21 de Abril de 2025</p>
+        </header>
+
+        <section id="kpis" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+            <div class="kpi-card">
+                <p class="kpi-value gradient-text">867</p>
+                <p class="kpi-label">Cadastros Ativos</p>
+            </div>
+            <div class="kpi-card">
+                <p class="kpi-value gradient-text">1.250</p>
+                <p class="kpi-label">Cadastros Brutos Iniciados</p>
+            </div>
+            <div class="kpi-card md:col-span-2 lg:col-span-1">
+                <p class="kpi-value gradient-text">69,36%</p>
+                <p class="kpi-label">Taxa de Conversão Geral</p>
+            </div>
+        </section>
+
+        <section id="funil" class="mb-12">
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-1 text-center">O Funil de Conversão: Ativos vs. Incompletos</h3>
+                <p class="text-slate-600 mb-6 text-center max-w-2xl mx-auto">De todos os usuários que iniciaram o cadastro, quase 70% concluíram o processo com sucesso, demonstrando um forte interesse inicial. O desafio é resgatar os 30% que não finalizaram.</p>
+                <div class="chart-container mx-auto" style="max-width: 400px; height:300px;">
+                    <canvas id="funnelChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="origens" class="mb-12">
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-1 text-center">De Onde Vêm os Usuários?</h3>
+                 <p class="text-slate-600 mb-6 text-center max-w-2xl mx-auto">A captação de usuários é dividida em duas grandes frentes: ações realizadas diretamente no Posto 214 Sul e iniciativas da própria Placa Viva. As ações do posto geram mais volume, mas as da Placa Viva possuem uma taxa de conversão superior.</p>
+                <div class="chart-container mx-auto" style="max-width: 700px;">
+                    <canvas id="sourcesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="canais-posto" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6 text-center">Análise dos Canais do Posto 214 Sul</h3>
+             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold mb-2 text-center">Eficiência por Canal: Taxa de Conversão</h4>
+                    <p class="text-slate-600 mb-4 text-center">A comparação da taxa de conversão revela os pontos fortes e fracos da estratégia do posto. O QR Code é um sucesso absoluto, enquanto o Instagram representa o maior "vazamento" de potenciais clientes.</p>
+                    <div class="chart-container">
+                        <canvas id="channelConversionChart"></canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                        <h4 class="text-xl font-bold text-green-600">🚀 Canal de Sucesso: QR Code</h4>
+                        <p class="text-slate-600 mt-2">Com **82,12% de conversão**, o QR Code no ponto de venda é a ferramenta mais poderosa, convertendo interesse imediato em cadastro ativo de forma muito eficaz.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                        <h4 class="text-xl font-bold text-red-600">⚠️ Ponto de Otimização: Instagram</h4>
+                        <p class="text-slate-600 mt-2">Apesar de atrair **334 inícios**, o Instagram converte apenas **42,81%**. É crucial investigar a jornada do usuário para entender e corrigir a causa dessa baixa performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="parcerias" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-1 text-center">O Poder das Parcerias: Análise dos Convênios</h3>
+                 <p class="text-slate-600 mb-6 text-center max-w-2xl mx-auto">Com uma taxa de conversão média de 78%, os convênios são uma fonte de aquisição altamente qualificada. Parcerias como a ASCFM/DF mostram um potencial enorme a ser explorado.</p>
+                <div class="chart-container mx-auto" style="max-width: 800px;">
+                    <canvas id="partnershipsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="perfil" class="mb-12">
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-1 text-center">Análise de Perfil: Membros do Clube vs. Não-Membros</h3>
+                 <p class="text-slate-600 mb-6 text-center max-w-2xl mx-auto">Usuários que já são parte do Clube de Benefícios convertem a uma taxa espetacularmente alta. Isso indica que este grupo já possui um forte relacionamento e confiança com a marca.</p>
+                <div class="chart-container mx-auto" style="max-width: 600px;">
+                    <canvas id="profileChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 pt-8 border-t border-slate-200">
+            <p class="text-slate-500">Relatório gerado em 23 de Junho de 2025.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartColors = {
+            main: ['#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600'],
+            bluePurple: ['#2f4b7c', '#665191'],
+            status: ['#665191', '#d45087'],
+        };
+        
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.font.weight = '600';
+
+        new Chart(document.getElementById('funnelChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Ativos', 'Incompletos'],
+                datasets: [{
+                    label: 'Status do Cadastro',
+                    data: [867, 383],
+                    backgroundColor: chartColors.status,
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('sourcesChart'), {
+            type: 'bar',
+            data: {
+                labels: [['Ações Realizadas', 'no Posto'], ['Ações da', 'Placa Viva']],
+                datasets: [{
+                    label: 'Cadastros Ativos',
+                    data: [655, 212],
+                    backgroundColor: chartColors.bluePurple,
+                    borderRadius: 6
+                },
+                {
+                    label: 'Cadastros Brutos',
+                    data: [960, 290],
+                    backgroundColor: '#cbd5e1',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e2e8f0'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('channelConversionChart'), {
+            type: 'bar',
+            data: {
+                labels: [['Posto', '(QR Code)'], 'Convênios', 'Instagram'],
+                datasets: [{
+                    label: 'Taxa de Conversão (%)',
+                    data: [82.12, 78.00, 42.81],
+                    backgroundColor: ['#665191', '#a05195', '#f95d6a'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                         grid: {
+                            color: '#e2e8f0'
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                            label: function(context) {
+                                return ` Conversão: ${context.raw.toFixed(2)}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('partnershipsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['UNIO GROUP', 'ASCFM/DF', 'CLAM', 'CAA/OAB', 'ACC Consultoria'],
+                datasets: [{
+                    label: 'Taxa de Conversão (%)',
+                    data: [100, 93.55, 87.5, 66.67, 0],
+                    backgroundColor: chartColors.main,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { beginAtZero: true, max: 100 },
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                            label: function(context) {
+                                return ` Conversão: ${context.raw.toFixed(2)}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('profileChart'), {
+            type: 'bar',
+            data: {
+                labels: [['Membro do', 'Clube'], ['Não-Membro', 'do Clube']],
+                datasets: [{
+                    label: 'Taxa de Conversão (%)',
+                    data: [93.75, 61.52],
+                    backgroundColor: chartColors.bluePurple,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7,
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                     y: { beginAtZero: true, max: 100 },
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                            label: function(context) {
+                                return ` Conversão: ${context.raw.toFixed(2)}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
