@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Relatórios - Posto 214 Sul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 flex items-center justify-center h-screen">
+
+    <div class="text-center p-8 max-w-2xl mx-auto">
+        
+        <header class="mb-8">
+            <h1 class="text-4xl md:text-5xl font-black text-[#004369]">Bem-vindo à Área de Relatórios</h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-[#01949A] mt-2">Posto 214 Sul</h2>
+        </header>
+
+        <main class="bg-white p-8 rounded-xl shadow-lg">
+            <p class="text-lg text-gray-700 mb-6">Por favor, selecione um relatório abaixo para visualizar os dados detalhados.</p>
+            
+            <div class="relative inline-block text-left" id="dropdown-container">
+                <div>
+                    <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#004369] text-lg font-medium text-white hover:bg-[#01949A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#01949A] transition-all" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                        Selecionar Relatório
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="dropdown-menu" class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                    <div class="py-1" role="none">
+                        <a href="/RelatórioDeDesempenhoDeCadastros.html" class="text-gray-700 block px-4 py-3 text-md hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="menu-item-0">Relatório de Desempenho</a>
+                        <a href="/RelatórioDePerformanceDeCadastros.html" class="text-gray-700 block px-4 py-3 text-md hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="menu-item-1">Relatório de Performance</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownContainer = document.getElementById('dropdown-container');
+
+        menuButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('click', (event) => {
+            if (!dropdownContainer.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
