@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Cadastros - Posto 214 Sul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            width: 100%;
+            max-width: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#E5DDC8]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-[#004369]">Relatório de Desempenho de Cadastros</h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-[#01949A]">Cliente: Posto 214 Sul</h2>
+            <p class="text-lg text-[#004369] mt-2">Análise Consolidada: Junho e Julho de 2025</p>
+        </header>
+
+        <section id="kpis" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <p class="text-lg font-semibold text-[#01949A]">Total de Cadastros (ambos períodos)</p>
+                    <p class="text-6xl font-black text-[#004369] mt-2">291</p>
+                </div>
+                <div class="bg-[#004369] text-white p-6 rounded-xl shadow-lg">
+                    <p class="text-lg font-semibold text-[#F8B229]">Crescimento de Cadastros</p>
+                    <p class="text-6xl font-black mt-2">+234%</p>
+                    <p class="text-md opacity-90">Comparando Período 2 com Período 1</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <p class="text-lg font-semibold text-[#01949A]">Origem de Maior Impacto</p>
+                    <p class="text-5xl font-black text-[#004369] mt-2">Instagram</p>
+                    <p class="text-md text-[#004369]">Principal canal no Período 2</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="periodo1" class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-12">
+            <h3 class="text-3xl font-bold text-[#004369] mb-4">Análise do Período 1: 20/06 a 25/06/2025</h3>
+            <p class="text-md text-gray-700 mb-6">Neste primeiro intervalo, a campanha gerou <strong>67 novos cadastros</strong>. O destaque foi a alta taxa de conclusão, indicando uma boa qualidade na captura inicial de leads.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h4 class="text-xl font-bold text-[#01949A] mb-2">Visão Geral</h4>
+                    <p class="text-2xl font-black text-[#004369]">73,1%<span class="text-lg font-semibold ml-2">dos cadastros foram completos</span></p>
+                    <div class="chart-container mt-4">
+                        <canvas id="period1DonutChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-[#01949A] mb-2">Origem: Instagram</h4>
+                    <p class="text-gray-600 mb-4">O Instagram contribuiu com <strong>6 cadastros</strong>, com uma taxa de conclusão de 50%.</p>
+                    <div class="chart-container" style="max-width: 350px;">
+                        <canvas id="period1InstaBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="periodo2" class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-12">
+            <h3 class="text-3xl font-bold text-[#004369] mb-4">Análise do Período 2: 27/06 a 04/07/2025</h3>
+            <p class="text-md text-gray-700 mb-6">O segundo período viu um crescimento explosivo, alcançando <strong>224 novos registros</strong>. O volume vindo do Instagram foi o grande motor deste resultado, embora a taxa de conclusão geral tenha diminuído.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h4 class="text-xl font-bold text-[#DB1F48] mb-2">Visão Geral</h4>
+                    <p class="text-2xl font-black text-[#004369]">54,9%<span class="text-lg font-semibold ml-2">dos cadastros foram completos</span></p>
+                    <div class="chart-container mt-4">
+                        <canvas id="period2DonutChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-[#01949A] mb-2">Origem: Instagram</h4>
+                    <p class="text-gray-600 mb-4">O Instagram foi a origem de <strong>146 cadastros</strong>, consolidando-se como o principal canal de aquisição.</p>
+                     <div class="chart-container" style="max-width: 350px;">
+                        <canvas id="period2InstaBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparativo" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h3 class="text-3xl font-bold text-[#004369] mb-4 text-center">Comparativo e Insights Chave</h3>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-3">
+                     <h4 class="text-xl font-bold text-[#01949A] mb-2 text-center">Crescimento Total de Cadastros</h4>
+                    <div class="chart-container" style="max-width: 100%; height: 350px;">
+                        <canvas id="comparisonBarChart"></canvas>
+                    </div>
+                </div>
+                <div class="md:col-span-2 text-left">
+                    <h4 class="text-xl font-bold text-[#004369] mb-4">Recomendações</h4>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-[#E5DDC8] rounded-lg">
+                            <h5 class="font-bold text-[#004369]">🚀 Aceleração Via Instagram</h5>
+                            <p class="text-sm text-gray-800">O canal teve um desempenho excepcional. Recomenda-se a intensificação dos investimentos para escalar ainda mais os resultados.</p>
+                        </div>
+                        <div class="p-4 bg-[#E5DDC8] rounded-lg">
+                             <h5 class="font-bold text-[#004369]">🔍 Oportunidade de Otimização</h5>
+                            <p class="text-sm text-gray-800">A proporção de cadastros incompletos aumentou. Sugerimos uma análise do formulário e da jornada do usuário para reduzir o atrito e aumentar a conversão.</p>
+                        </div>
+                         <div class="p-4 bg-[#E5DDC8] rounded-lg">
+                             <h5 class="font-bold text-[#004369]">📊 Foco na Conversão</h5>
+                            <p class="text-sm text-gray-800">Monitorar a taxa de conclusão é vital. Pequenas melhorias na usabilidade podem gerar um grande impacto no número de cadastros completos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#004369',
+                        font: {
+                            size: 14,
+                            weight: '600'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#004369',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#E5DDC8',
+                    padding: 10,
+                    titleFont: {
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 14
+                    }
+                }
+            }
+        };
+
+        const period1DonutData = {
+            labels: ['Completos', 'Incompletos'],
+            datasets: [{
+                label: 'Cadastros',
+                data: [49, 18],
+                backgroundColor: ['#01949A', '#DB1F48'],
+                borderColor: '#FFFFFF',
+                borderWidth: 3,
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('period1DonutChart'), {
+            type: 'doughnut',
+            data: period1DonutData,
+            options: commonChartOptions
+        });
+        
+        const period1InstaBarData = {
+            labels: ['Completos', 'Incompletos'],
+            datasets: [{
+                label: 'Cadastros via Instagram',
+                data: [3, 3],
+                backgroundColor: ['#01949A', '#DB1F48'],
+                borderRadius: 5,
+                barThickness: 30
+            }]
+        };
+        new Chart(document.getElementById('period1InstaBarChart'), {
+            type: 'bar',
+            data: period1InstaBarData,
+            options: { ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                           color: '#004369'
+                        },
+                         grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                         ticks: {
+                           color: '#004369'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const period2DonutData = {
+            labels: ['Completos', 'Incompletos'],
+            datasets: [{
+                label: 'Cadastros',
+                data: [123, 101],
+                backgroundColor: ['#01949A', '#DB1F48'],
+                borderColor: '#FFFFFF',
+                borderWidth: 3,
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('period2DonutChart'), {
+            type: 'doughnut',
+            data: period2DonutData,
+            options: commonChartOptions
+        });
+
+        const period2InstaBarData = {
+            labels: ['Completos', 'Incompletos'],
+            datasets: [{
+                label: 'Cadastros via Instagram',
+                data: [71, 75],
+                backgroundColor: ['#01949A', '#DB1F48'],
+                borderRadius: 5,
+                barThickness: 30
+            }]
+        };
+        new Chart(document.getElementById('period2InstaBarChart'), {
+            type: 'bar',
+            data: period2InstaBarData,
+            options: { ...commonChartOptions,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                         ticks: {
+                           color: '#004369'
+                        },
+                         grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                         ticks: {
+                           color: '#004369'
+                        },
+                         grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+        
+        const comparisonBarData = {
+            labels: ['Período 1: 20/06-25/06', 'Período 2: 27/06-04/07'],
+            datasets: [
+                {
+                    label: 'Total Geral de Cadastros',
+                    data: [67, 224],
+                    backgroundColor: '#004369',
+                    borderRadius: 5
+                },
+                {
+                    label: 'Cadastros via Instagram',
+                    data: [6, 146],
+                    backgroundColor: '#F8B229',
+                    borderRadius: 5
+                }
+            ]
+        };
+        new Chart(document.getElementById('comparisonBarChart'), {
+            type: 'bar',
+            data: comparisonBarData,
+            options: { ...commonChartOptions,
+                scales: {
+                     y: {
+                        beginAtZero: true,
+                         ticks: {
+                           color: '#004369'
+                        },
+                         grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                         ticks: {
+                           color: '#004369',
+                           font: {
+                            size: 14
+                           }
+                        },
+                         grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
