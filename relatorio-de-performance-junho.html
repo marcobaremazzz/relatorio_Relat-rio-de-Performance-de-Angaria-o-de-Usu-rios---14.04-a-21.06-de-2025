@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Desempenho - Junho 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js para os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilo base para a página */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Um cinza claro para o fundo */
+        }
+        /* Efeito de sombra suave para os cards */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        /* Estilo para os títulos das seções */
+        .section-title {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #1f2937; /* Cinza escuro */
+            border-bottom: 2px solid #e5e7eb; /* Borda sutil */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Cabeçalho Principal -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Relatório de Desempenho de Cadastros</h1>
+            <p class="text-md text-gray-500 mt-1">
+                <strong>Unidade:</strong> Posto 214 Sul e Outras Fontes | 
+                <strong>Período Analisado:</strong> 01/06/2025 a 30/06/2025
+            </p>
+        </header>
+
+        <!-- Seção de Crescimento Mensal -->
+        <section class="mb-8">
+            <h2 class="section-title">Crescimento Mensal (Junho vs. Maio 2025)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <!-- Card: Total de Cadastros -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">Total de Cadastros Gerados</h3>
+                    <p class="text-4xl font-bold text-gray-800 my-2">560</p>
+                    <div class="flex items-center justify-center text-lg font-bold text-green-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                        <span>▲ 24.4%</span>
+                    </div>
+                </div>
+                <!-- Card: Cadastros Ativos -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">Cadastros Completos (Ativos)</h3>
+                    <p class="text-4xl font-bold text-gray-800 my-2">430</p>
+                    <div class="flex items-center justify-center text-lg font-bold text-green-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                        <span>▲ 22.9%</span>
+                    </div>
+                </div>
+                <!-- Card: Cadastros Incompletos -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-gray-500">Cadastros Incompletos</h3>
+                    <p class="text-4xl font-bold text-gray-800 my-2">130</p>
+                    <div class="flex items-center justify-center text-lg font-bold text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5m0 0l-5-5m5 5H6" /></svg>
+                        <span>▲ 30.0%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Principal de Análise -->
+        <main class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            
+            <!-- Coluna Esquerda: Gráficos -->
+            <div class="lg:col-span-3 flex flex-col gap-8">
+                <!-- Card: Qualidade dos Cadastros -->
+                <div class="card p-6 flex-1">
+                    <h3 class="section-title">Qualidade dos Cadastros (Junho)</h3>
+                    <div class="w-full h-64 md:h-80 flex items-center justify-center">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+                <!-- Card: Origem dos Cadastros -->
+                <div class="card p-6 flex-1">
+                    <h3 class="section-title">Origem dos Cadastros (Junho)</h3>
+                    <div class="w-full h-64 md:h-80 flex items-center justify-center">
+                         <canvas id="sourceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Desempenho Diário -->
+            <div class="lg:col-span-2">
+                <div class="card p-6 h-full">
+                    <h3 class="section-title">Desempenho Diário (Junho)</h3>
+                    <div class="w-full h-[36rem] md:h-[42rem]">
+                        <canvas id="dailyPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Dados para os gráficos
+        const juneData = {
+            quality: {
+                labels: ['Completos (Ativos)', 'Incompletos'],
+                values: [430, 130]
+            },
+            source: {
+                labels: ['Link de Indicação', 'Instagram', 'Posto 214 Sul (QR Code)', 'Vídeo Instagram', 'Outros'],
+                values: [229, 204, 53, 13, 61]
+            },
+            daily: {
+                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+                values: [4, 2, 8, 7, 22, 4, 3, 4, 14, 33, 117, 82, 29, 13, 13, 13, 10, 21, 8, 14, 12, 7, 15, 7, 13, 4, 21, 13, 28, 26]
+            }
+        };
+
+        // Configuração do Gráfico de Qualidade (Donut)
+        const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+        new Chart(qualityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: juneData.quality.labels,
+                datasets: [{
+                    label: 'Qualidade dos Cadastros',
+                    data: juneData.quality.values,
+                    backgroundColor: [
+                        '#10B981', // Verde Esmeralda
+                        '#EF4444'  // Vermelho
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14 },
+                            padding: 20
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+        
+        // Configuração do Gráfico de Origem (Barra Horizontal)
+        const sourceCtx = document.getElementById('sourceChart').getContext('2d');
+        new Chart(sourceCtx, {
+            type: 'bar',
+            data: {
+                labels: juneData.source.labels,
+                datasets: [{
+                    label: 'Total de Cadastros por Origem',
+                    data: juneData.source.values,
+                    backgroundColor: [
+                        '#3B82F6', // Azul
+                        '#8B5CF6', // Violeta
+                        '#F97316', // Laranja
+                        '#EC4899', // Rosa
+                        '#6B7280'  // Cinza
+                    ],
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Torna o gráfico de barra horizontal
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false // Oculta a legenda para um visual mais limpo
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: true,
+                            color: '#e5e7eb'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Configuração do Gráfico de Desempenho Diário (Barra Vertical)
+        const dailyCtx = document.getElementById('dailyPerformanceChart').getContext('2d');
+        new Chart(dailyCtx, {
+            type: 'bar',
+            data: {
+                labels: juneData.daily.labels,
+                datasets: [{
+                    label: 'Cadastros por Dia',
+                    data: juneData.daily.values,
+                    backgroundColor: '#3B82F6', // Azul
+                    borderColor: '#1E40AF',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                         grid: {
+                            display: true,
+                            color: '#e5e7eb'
+                        }
+                    },
+                    x: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
